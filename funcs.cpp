@@ -3,6 +3,9 @@
 #include "funcs.h"
 #include "imageio.h"
 
+//NOTE TO SELF: check for loops that use <= and change it to < !!
+//double check programs with image2
+
 //TASK A -- WORKS! need to make it into a function... and change output name!
 //invert.cpp
 
@@ -120,4 +123,89 @@ void invert(std::string filename){ //not sure what parameters...
 
 writeImage("taskC.pgm",out, h, w);
 
-//TASK D
+//TASK D -- again, missing proper implementing
+
+  std::string input = "image1.pgm";
+
+  int img[MAX_H][MAX_W];
+  int h, w;
+
+  readImage(input, img, h, w);
+  
+  int out[MAX_H][MAX_W];
+
+  //if pixel is white, turn black. if pixel is black, turn white.
+  //where orginal pixel value if "neg" + 255 ex. -1 (aka 1) -> 254 and -254 (aka 254) -> 1
+
+  //left side
+  for(int row = 0; row < h; row++) {
+    for(int col = 0; col < w/4; col++) {
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //top
+  for(int row = 0; row < h/4; row++) {
+    for(int col = 0; col < w; col++) {
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //bottom
+  for(int row = h - h/4; row < h; row++) {
+    for(int col = 0; col < w; col++) {
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //right side
+  for(int row = 0; row < h; row++) {
+    for(int col = w - w/4; col < w; col++) {
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //FRAME
+
+  //top
+  for(int row = h/4; row < h/4 + 1; row++) {
+    for(int col = w/4; col < w * 0.75; col++) {
+      img[row][col] = 255;
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //left side
+  for(int row = h/4; row < h * 0.75; row++) {
+    for(int col = w/4; col < w/4 + 1; col++) {
+      img[row][col] = 255;
+      out[row][col] = img[row][col];
+    }
+  }
+  
+  //bottom
+  for(int row = (h - h/4) - 1; row < h - h/4; row++) {
+    for(int col = w/4; col < w * 0.75; col++) {
+      img[row][col] = 255;
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //right side
+  for(int row = h/4; row < h * 0.75; row++) {
+    for(int col = (w - w/4) - 1; col < w - w/4; col++) {
+      img[row][col] = 255;
+      out[row][col] = img[row][col];
+    }
+  }
+
+  //middle [filled]
+  for(int row = h/4 + h/h; row < (h * 0.75) - 1; row++) {
+    for(int col = w/4 + w/w; col < (w * 0.75) - 1; col++) {
+      out[row][col] = img[row][col];
+    }
+  }
+
+  writeImage("taskD.pgm",out, h, w);
+
+//TASK E
