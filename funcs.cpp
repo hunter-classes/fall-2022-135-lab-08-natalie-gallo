@@ -123,7 +123,7 @@ void invert(std::string filename){ //not sure what parameters...
 
 writeImage("taskC.pgm",out, h, w);
 
-//TASK D -- again, missing proper implementing
+//TASK D -- again, missing proper implementing (works with cat image)
 
   std::string input = "image1.pgm";
 
@@ -208,4 +208,25 @@ writeImage("taskC.pgm",out, h, w);
 
   writeImage("taskD.pgm",out, h, w);
 
-//TASK E
+//TASK E -- need for make into function and change output file name
+
+std::string input = "inImage.pgm"; //used cat image for this.. consistency needed
+
+  int img[MAX_H][MAX_W];
+  int h, w;
+
+  readImage(input, img, h, w);
+  
+  int out[MAX_H][MAX_W];
+
+  for(int row = 0; row < h; row++){
+    for(int col = 0; col < w; col++){
+      //small 2x2 squares for every pixel
+      out[row * 2][col * 2] = img[row][col]; //top left
+      out[(row * 2) + 1][col * 2] = img[row][col]; //bottom left
+      out[row * 2][(col * 2) + 1] = img[row][col]; //top right
+      out[(row * 2) + 1][(col * 2) + 1] = img[row][col]; //bottom right
+    }
+  }
+
+  writeImage("outImage.pgm", out, h * 2, w * 2);
