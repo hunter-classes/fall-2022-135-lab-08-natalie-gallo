@@ -230,3 +230,33 @@ std::string input = "inImage.pgm"; //used cat image for this.. consistency neede
   }
 
   writeImage("outImage.pgm", out, h * 2, w * 2);
+
+//TASK F
+
+  std::string input = "inImage.pgm";
+
+  int img[MAX_H][MAX_W];
+  int h, w;
+
+  readImage(input, img, h, w);
+  
+  int out[MAX_H][MAX_W];
+
+  for(int row = 0; row < h; row++){
+    for(int col = 0; col < w; col++){
+      //small 2x2 squares for every pixel
+      double num1 = img[row * 2][col * 2];
+      double num2 = img[(row * 2) + 1][col * 2];
+      double num3 = img[row * 2][(col * 2) + 1];
+      double num4 = img[(row * 2) + 1][(col * 2) + 1];
+      
+      double avg = round((num1 + num2 + num3 + num4) / 4);
+	
+      out[row * 2][col * 2] = avg; //top left
+      out[(row * 2) + 1][col * 2] = avg; //bottom left
+      out[row * 2][(col * 2) + 1] = avg; //top right
+      out[(row * 2) + 1][(col * 2) + 1] = avg; //bottom right
+    }
+  }
+
+  writeImage("outImage.pgm", out, h, w);
