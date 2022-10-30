@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cmath>
 #include "funcs.h"
 #include "imageio.h"
 
@@ -9,9 +9,7 @@
 //TASK A -- WORKS! need to make it into a function... and change output name!
 //invert.cpp
 
-void invert(std::string filename){ //not sure what parameters...
-
-  std::string input = "image1.pgm";
+void invert(std::string input){ //not sure what parameters...
 
   int img[MAX_H][MAX_W];
   int h, w;
@@ -39,8 +37,7 @@ void invert(std::string filename){ //not sure what parameters...
 }
 
 //TASK B -- works(?) need to turn into function and change output file name
-
-  std::string input = "image1.pgm";
+void invert_half(std::string input){
 
   int img[MAX_H][MAX_W];
   int h, w;
@@ -70,10 +67,10 @@ void invert(std::string filename){ //not sure what parameters...
   }
 
   writeImage("taskB.pgm",out, h, w);
+}
 
 //TASK C -- works... need to make proper implemation per lab instructions
-
-  std::string input = "image1.pgm";
+void box(std::string input){
 
   int img[MAX_H][MAX_W];
   int h, w;
@@ -121,11 +118,11 @@ void invert(std::string filename){ //not sure what parameters...
     }
   }
 
-writeImage("taskC.pgm",out, h, w);
+  writeImage("taskC.pgm",out, h, w);
+}
 
 //TASK D -- again, missing proper implementing (works with cat image)
-
-  std::string input = "image1.pgm";
+void frame(std::string input){
 
   int img[MAX_H][MAX_W];
   int h, w;
@@ -207,10 +204,11 @@ writeImage("taskC.pgm",out, h, w);
   }
 
   writeImage("taskD.pgm",out, h, w);
+}
 
 //TASK E -- need for make into function and change output file name
-
-std::string input = "inImage.pgm"; //used cat image for this.. consistency needed
+void scale(std::string input){
+ //used cat image for this.. consistency needed
 
   int img[MAX_H][MAX_W];
   int h, w;
@@ -229,11 +227,11 @@ std::string input = "inImage.pgm"; //used cat image for this.. consistency neede
     }
   }
 
-  writeImage("outImage.pgm", out, h * 2, w * 2);
+  writeImage("taskE.pgm", out, h * 2, w * 2);
+}
 
 //TASK F
-
-  std::string input = "inImage.pgm";
+void pixelate(std::string input){
 
   int img[MAX_H][MAX_W];
   int h, w;
@@ -259,4 +257,5 @@ std::string input = "inImage.pgm"; //used cat image for this.. consistency neede
     }
   }
 
-  writeImage("outImage.pgm", out, h, w);
+  writeImage("taskF.pgm", out, h, w);
+}
