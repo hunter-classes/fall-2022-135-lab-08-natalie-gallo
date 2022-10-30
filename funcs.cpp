@@ -3,7 +3,6 @@
 #include "funcs.h"
 #include "imageio.h"
 
-//NOTE TO SELF: check for loops that use <= and change it to < !!
 //double check programs with image2
 
 //TASK A -- WORKS! need to make it into a function... and change output name!
@@ -52,7 +51,7 @@ void invert_half(std::string input){
   int color;
 
   for(int row = 0; row < h; row++) {
-    for(int col = 0; col <= w/2; col++) {
+    for(int col = 0; col < w/2; col++) {
       out[row][col] = img[row][col];
     }
   }
